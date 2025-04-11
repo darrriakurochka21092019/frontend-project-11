@@ -16,7 +16,7 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm install
+      - name: Build
+        run: npm run build
       - name: Deploy to Vercel
-        run: |
-          set -x # Добавляем это
-          npx vercel deploy --token ${{ secrets.VERCEL_TOKEN }} --prebuilt --org ${{ secrets.VERCEL_ORG_ID }} --project ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx vercel deploy --token ${{ secrets.VERCEL_TOKEN }} --prebuilt

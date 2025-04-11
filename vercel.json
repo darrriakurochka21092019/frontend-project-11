@@ -1,0 +1,4 @@
+{
+  "orgId": "${process.env.VERCEL_ORG_ID}",
+  "projectId": "${process.env.VERCEL_PROJECT_ID}"
+}
