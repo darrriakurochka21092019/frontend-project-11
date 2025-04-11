@@ -1,2 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'; // Импортируем стили Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 console.log('Hello from index.js!');
