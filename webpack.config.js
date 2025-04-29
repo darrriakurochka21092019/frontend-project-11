@@ -1,36 +1,34 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  mode: "development", // или 'production' для оптимизации
-  entry: "./src/index.js", // Точка входа JavaScript
+  mode: process.env.NODE_ENV || 'development',
+  entry: path.resolve(__dirname, './src/index.js'),
   output: {
-    filename: "bundle.js", // Имя выходного файла
-    path: path.resolve(__dirname, "dist"), // Путь к директории для выходных файлов
-    clean: true, // Очищает папку 'dist' перед каждой сборкой
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
   },
   devServer: {
-    static: "./dist", // Директория, из которой будут обслуживаться статические файлы
+    port: 4300,
   },
   module: {
     rules: [
       {
-        test: /\.css$/i, // Регулярное выражение для CSS файлов
-        use: ["style-loader", "css-loader"], // Применение загрузчиков (порядок важен!)
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i, // Для обработки изображений
-        type: "asset/resource",
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i, // Для обработки шрифтов
-        type: "asset/resource",
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html", // Путь к HTML шаблону
+      template: 'index.html',
     }),
   ],
 };
